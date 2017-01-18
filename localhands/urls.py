@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from localhandsapp import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.home, name='home'),
+    url(r'^scooper/sign-in/$', auth_views.login,
+        {'template_name': 'scooper/sign_in.html'},
+        name = 'scooper-sign-in'),
+    url(r'^scooper/sign-out', auth_views.logout,
+        {'next_page': '/'},
+        name= 'scooper-sign-out'),
+    url(r'^scooper/$', views.scooper_home, name = 'scooper-home'),
 ]
