@@ -13,6 +13,22 @@ def home(request):
 def scooper_home(request):
     return render(request, 'scooper/home.html', {})
 
+@login_required(login_url='/scooper/sign-in/')
+def scooper_account(request):
+    return render(request, 'scooper/account.html', {})
+
+@login_required(login_url='/scooper/sign-in/')
+def scooper_task(request):
+    return render(request, 'scooper/task.html', {})
+
+@login_required(login_url='/scooper/sign-in/')
+def scooper_order(request):
+    return render(request, 'scooper/order.html', {})
+
+@login_required(login_url='/scooper/sign-in/')
+def scooper_report(request):
+    return render(request, 'scooper/report.html', {})
+
 def scooper_sign_up(request):
     user_form = UserForm()
     scooper_form = ScooperForm()

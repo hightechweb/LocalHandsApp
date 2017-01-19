@@ -1,24 +1,13 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Scooper Sign Up</title>
+{% extends 'base_signup.html' %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block title %} Sign In {% endblock %}
+{% block heading %} Scooper - Sign In {% endblock %}
 
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  </head>
-  <body>
-    <h2>Scooper Sign Up</h2>
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ user_form }}
-      {{ scooper_form }}
-      <button type="submit">Sign Up</button>
-    </form>
-  </body>
-</html>
+{% block content %}
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form }}
+    {{ scooper_form }}
+    <button type="submit">Sign Up</button>
+  </form>
+{% endblock %}

@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from localhandsapp import views
 from django.contrib.auth import views as auth_views
@@ -24,6 +24,8 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+
+    # Scooper
     url(r'^scooper/sign-in/$', auth_views.login,
         {'template_name': 'scooper/sign_in.html'},
         name = 'scooper-sign-in'),
@@ -33,4 +35,14 @@ urlpatterns = [
     url(r'^scooper/sign-up', views.scooper_sign_up,
         name = 'scooper-sign-up'),
     url(r'^scooper/$', views.scooper_home, name = 'scooper-home'),
+
+    url(r'^scooper/account/$', views.scooper_account, name = 'scooper-account'),
+    url(r'^scooper/task/$', views.scooper_task, name = 'scooper-task'),
+    url(r'^scooper/order/$', views.scooper_order, name = 'scooper-order'),
+    url(r'^scooper/report/$', views.scooper_report, name = 'scooper-report'),
+
+    # Sign In / Sign Up / Sign Out
+    url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
+    # /convert-token (sign_in/ sign up)
+    # /revoke-token (sign_out)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
