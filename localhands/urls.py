@@ -38,6 +38,8 @@ urlpatterns = [
 
     url(r'^scooper/account/$', views.scooper_account, name = 'scooper-account'),
     url(r'^scooper/task/$', views.scooper_task, name = 'scooper-task'),
+    url(r'^scooper/task/add/$', views.scooper_add_task, name = 'scooper-add-task'),
+    url(r'^scooper/task/edit/(?P<task_id>\d+)/$', views.scooper_edit_task, name = 'scooper-edit-task'),
     url(r'^scooper/order/$', views.scooper_order, name = 'scooper-order'),
     url(r'^scooper/report/$', views.scooper_report, name = 'scooper-report'),
 

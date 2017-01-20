@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from localhandsapp.forms import UserForm, ScooperForm, UserFormForEdit
+from localhandsapp.forms import UserForm, ScooperForm, UserFormForEdit, TaskForm
 from django.contrib.auth import authenticate, login
+
 from django.contrib.auth.models import User
+from localhandsapp.models import Task
 
 # Create your views here.
 def home(request):
@@ -35,7 +37,40 @@ def scooper_account(request):
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_task(request):
-    return render(request, 'scooper/task.html', {})
+    task = Task.objects.filter(scooper = request.user.scooper).order_by("-id")
+    return render(request, 'scooper/task.html', {"tasks": task})
+
+@login_required(login_url='/scooper/sign-in/')
+def scooper_add_task(request):
+    form = TaskForm()
+
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.scooper = request.user.scooper
+            task.save()
+            return redirect(scooper_task)
+
+    return render(request, 'scooper/add_task.html', {
+        "form": form
+    })
+
+@login_required(login_url='/scooper/sign-in/')
+def scooper_edit_task(request, task_id):
+    form = TaskForm(instance=Task.objects.get(id = task_id))
+
+    if request.method == "POST":
+        form = TaskForm(request.POST, instance= Task.objects.get(id = task_id))
+
+        if form.is_valid():
+            form.save()
+            return redirect(scooper_task)
+
+    return render(request, 'scooper/edit_task.html', {
+        "form": form
+    })
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_order(request):

@@ -1,8 +1,45 @@
 {% extends 'scooper/base.html' %}
-{% load bootstrap3 %}
 
 {% block title %} Tasks {% endblock %}
 
 {% block page %}
+
+<div class="panel">
+    <div class="panel-heading bg-black">
+        <h4 class="panel-title text-center text-white">Tasks</h4>
+    </div>
+    <div class="panel-body">
+
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr class="bg-black text-white">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Short Description</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                      <td scope="row">{{ task.id }}</td>
+                      <td><a href="{% url 'scooper-edit-task' task.id %}">{{ task.name }}</a></td>
+                      <td>{{ task.short_description }}</td>
+                      <td>{{ task.price }}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{% url 'scooper-add-task' %}" class="btn btn-green btn-login btn-block">Add Task</a>
+        </div>
+
+    </div>
+</div>
+
+
 
 {% endblock %}

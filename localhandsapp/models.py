@@ -31,3 +31,12 @@ class Driver(models.Model):
 
     def __str__(self):
         return self.user.get_full_name()
+
+class Task(models.Model):
+    scooper = models.ForeignKey(Scooper)
+    name = models.CharField(max_length=500, blank=False)
+    short_description = models.CharField(max_length=500, blank=False)
+    price = models.IntegerField(default=0, blank=False)
+
+    def __str__(self):
+        return self.name

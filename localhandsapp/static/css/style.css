@@ -553,3 +553,13 @@ a.spotify-logo {
 .content .panel {
   border: none;
 }
+
+.table > thead > tr > th,
+.table > thead > tr > td {
+  vertical-align: middle;
+}
+
+.table,
+.table > thead > tr > th {
+  border-color: #88A1B2
+}

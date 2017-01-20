@@ -3,6 +3,12 @@
 
 
 {% block sidebar %}
+
+  {% url 'scooper-order' as order_url %}
+  {% url 'scooper-task' as task_url %}
+  {% url 'scooper-report' as report_url %}
+  {% url 'scooper-account' as account_url %}
+
   <div class="text-center">
     <img src="{{ MEDIA_URL }}{{ request.user.scooper.logo }}" class="img-circle" width="70" height="70" />
     <br/>
@@ -13,12 +19,12 @@
 
   <div class="list-group">
     <span class="text-uppercase pb-sidebar">Dashboard</span>
-    <a href="{% url 'scooper-order' %}" class="list-group-item">Orders</a>
-    <a href="{% url 'scooper-task' %}" class="list-group-item">Tasks</a>
-    <a href="{% url 'scooper-report' %}" class="list-group-item">Reports</a>
+    <a href="{% url 'scooper-order' %}" class="list-group-item {% if request.path == order_url %} active {% endif %}">Orders</a>
+    <a href="{% url 'scooper-task' %}" class="list-group-item {% if request.path == task_url %} active {% endif %}">Tasks</a>
+    <a href="{% url 'scooper-report' %}" class="list-group-item {% if request.path == report_url %} active {% endif %}">Reports</a>
 
     <span class="text-uppercase pb-sidebar">Profile</span>
-    <a href="{% url 'scooper-account' %}" class="list-group-item">Account</a>
+    <a href="{% url 'scooper-account' %}" class="list-group-item {% if request.path == account_url %} active {% endif %}">Account</a>
   </div>
 
   <div class="text-center">

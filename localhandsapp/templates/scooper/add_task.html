@@ -1,0 +1,23 @@
+{% extends 'scooper/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %} Add Task {% endblock %}
+
+{% block page %}
+  <div class="col-lg-offset-2 col-lg-8">
+    <div class="panel">
+      <div class="panel-heading bg-black text-white">
+        <h4 class="panel-title text-center">
+          Add Task
+        </h4>
+      </div>
+      <div class="panel-body">
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-green btn-login btn-block">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

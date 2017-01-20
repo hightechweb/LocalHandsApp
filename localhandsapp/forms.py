@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from localhandsapp.models import Scooper
+from localhandsapp.models import Scooper, Task
 
 # UserForm
 class UserForm(forms.ModelForm):
@@ -25,3 +25,9 @@ class ScooperForm(forms.ModelForm):
     class Meta:
         model = Scooper
         fields = ("name", "phone", "address", "logo")
+
+# TaskForm
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        exclude = ("scooper",)
