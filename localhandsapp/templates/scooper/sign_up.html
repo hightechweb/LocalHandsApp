@@ -1,13 +1,14 @@
 {% extends 'base_signup.html' %}
+{% load bootstrap3 %}
 
-{% block title %} Sign In {% endblock %}
-{% block heading %} Scooper - Sign In {% endblock %}
+{% block title %}Sign Up{% endblock %}
+{% block heading %}Scooper Sign Up{% endblock %}
 
 {% block content %}
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ user_form }}
-    {{ scooper_form }}
-    <button type="submit">Sign Up</button>
+    {% bootstrap_form user_form %}
+    <button type="submit" class="btn btn-green btn-sm btn-block">Sign Up</button>
   </form>
+  <a href="{% url 'scooper-sign-in' %}" class="link-switch">Already a member? Sign In</a>
 {% endblock %}

@@ -1,0 +1,440 @@
+body {
+    font-family: Circular,Helvetica,Arial,sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #2E2F33;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+.alert {
+    font-size: 14px;
+}
+
+.errorlist.nonfield {
+    background: red;
+    color: white;
+}
+
+.sign-up .content {
+    background-color: #FFF;
+    border-top: 1px solid #dfe0e6;
+    padding: 1.9em;
+}
+
+p {
+    font-size: 16px;
+    margin: 0 0 1em;
+}
+
+a {
+  color: #2EBD59;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:focus, a:hover {
+    color: #1ED760;
+    text-decoration: none;
+}
+
+a:active, a:hover {
+    outline: 0;
+}
+
+fieldset {
+    border: 1px solid silver;
+    margin: 0 2px;
+    padding: .35em .625em .75em;
+}
+
+.strong, strong {
+    font-weight: 500;
+}
+
+.bg-grey {
+  background-color: #F8F8F8;
+}
+
+.btn-green {
+  color: #FFF;
+  background-color: #2EBD59;
+}
+
+.btn-green:focus, .btn-green:hover {
+    color: #FFF;
+    background-color: #249446;
+}
+
+
+.flexbox:not(.flexboxtweener) .wrap {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.layout-signup, .l-signup-header {
+    padding: 1.5em 0;
+}
+
+.layout-signup, .spotify-logo {
+    width: 197px;
+    height: 59px;
+}
+
+.layout-signup, .l-box-content {
+    margin: 0 auto;
+    max-width: 26.875em;
+}
+
+a.spotify-logo {
+    width: 197px;
+    height: 59px;
+    background: url("../img/scooper-logo.png") no-repeat;
+    display: block;
+    margin: 0 auto;
+}
+
+/*.layout-signup .page-signup section.register .content, .layout-signup .sign-up {
+    padding-top: 0;
+}*/
+
+.sign-up {
+    background: #FFF;
+    color: #222326;
+    min-width: 320px;
+    position: relative;
+}
+
+.layout-signup, .content {
+    border-top: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.content {
+    background-color: #FFF;
+    border-top: 1px solid #dfe0e6;
+    padding: 1.9em;
+}
+
+.sign-up, .btn {
+    margin-bottom: 14px;
+}
+
+.sign-up h2 {
+    color: #1c1c1f;
+    margin-bottom: 1em;
+}
+
+.hdr-l h3 {
+    font-size: 18px;
+}
+
+.center {
+    text-align: center;
+}
+
+.layout-signup, .l-signup-header {
+    padding: 1.5em 0;
+}
+
+.hdr-jumbo, .hdr-l, .hdr-m, .hdr-sm, .hdr-xl, .hdr-xsm, .hdr-xxl, h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 .5em;
+    text-rendering: optimizelegibility;
+}
+
+.layout-signup, .l-signup-header {
+    background-color: #FFF;
+    padding: .5em 0;
+}
+
+.layout-signup, .l-box-content {
+    margin: 0 auto;
+    max-width: 26.875em;
+}
+
+.layout-signup .page-signup .signup-select, .layout-signup .page-signup section.register {
+    display: block !important;
+}
+
+.l-signup-body, .layout-signup .l-signup-invite-code {
+  border-top: 1px solid #dfe0e6;
+  background-color: #FFF;
+  padding: 40px 0;
+}
+
+.reboot form {
+    position: relative;
+}
+
+.reboot label {
+    color: #88898c;
+    display: block;
+    font-size: .9375em;
+}
+
+.reboot input[type="email"], .reboot input[type="number"], .reboot input[type="password"], .reboot input[type="tel"], .reboot input[type="text"], .reboot textarea {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 44px;
+}
+
+.reboot input:not([type="radio"]), .reboot textarea {
+    background-color: #FFF;
+    border: 1px solid #dfe0e6;
+    color: #1c1c1f;
+    font-size: .9375em;
+    line-height: normal;
+    margin: 0;
+}
+
+.reboot fieldset {
+    border: 0;
+    padding: 0;
+}
+
+.layout-signup fieldset li {
+    margin-bottom: 1em;
+}
+
+
+
+
+
+.layout-signup, .l-box-content {
+    margin: 0 auto;
+    max-width: 26.875em;
+}
+
+.sign-up .line-thru {
+    display: block;
+    font-size: .875em;
+    margin-bottom: 1em;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.sign-up fieldset li {
+    display: block;
+    margin-bottom: .625em;
+    text-align: left;
+}
+
+.sign-up.content > :last-child {
+    margin-bottom: 0;
+}
+
+
+.sign-up .primary {
+    font-size: .9375em;
+}
+
+
+.l-signup-header {
+    padding: 1.5em 0;
+}
+
+
+.list-unstyled, .nav-sub ul, .sign-up fieldset ul, .unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link-switch, .more-offers {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+
+
+
+
+.btn.btn-premium:hover {
+    color: #FFF;
+    background-color: #249446;
+}
+
+.btn.btn-halo-premium:focus, .btn.btn-halo-premium:hover, .btn.btn-premium {
+    color: #FFF;
+    background-color: #2EBD59;
+}
+
+.btn-group-sm > .btn, .btn-group-xs > .btn, .btn-sm, .btn-xs, .navbar .navbar-nav .navbar-btn, .navbar-form .btn {
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 500px;
+    padding: 7px 35px;
+}
+
+.sign-up .btn {
+    margin-bottom: 14px;
+}
+
+.btn, .navbar .navbar-nav .navbar-btn {
+    font-size: 18px;
+    line-height: 1.5;
+    border-radius: 500px;
+    padding: 11px 47px 9px;
+    -webkit-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    -o-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    transition: background-color .15s ease,border-color .15s ease,color .15s ease;
+    border-width: 0;
+    letter-spacing: 1.2px;
+    min-width: 130px;
+    text-transform: uppercase;
+    white-space: normal;
+}
+
+.btn, .navbar .navbar-nav .navbar-btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+
+.container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.content-main {
+    padding: 60px 0;
+}
+
+.container, .container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*.content-main {
+    padding: 30px 0;
+}*/
+
+.navbar {
+    position: relative;
+    min-height: 80px;
+    margin-bottom: 0;
+}
+
+/*.navbar {
+    min-height: 54px;
+}
+
+.navbar {
+    border: 0;
+}*/
+
+.navbar-static-top {
+    z-index: 1000;
+    border-width: 0 0 1px;
+}
+
+.navbar-default {
+    background-color: #000;
+    border-color: #2E2F33;
+}
+
+.navbar-user-img.user-icon-container {
+    border: 2px solid currentColor;
+}
+
+.navbar-user-img {
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
+    vertical-align: middle;
+}
+
+
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.panel-offer {
+    position: relative;
+    margin-top: 40px;
+}
+
+.panel-shaded {
+    margin-bottom: 15px;
+    background: #FFF;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 20px 5px rgba(0,0,0,.05);
+}
+
+.panel-offer.panel-offer-premium > .panel-heading {
+    background: #2EBD59;
+}
+
+.panel-offer > .panel-heading:empty {
+    height: 10px;
+}
+
+.panel-offer > .panel-heading {
+    position: relative;
+    z-index: 1;
+    height: 30px;
+    padding: 0;
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 32px;
+    border-radius: 0;
+}
+
+.panel-offer > .panel-body {
+    padding: 40px 40px 25px;
+}
+
+.list-perks {
+    margin: 0;
+}
+
+.list-inline, .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-perks.list-perks-premium li {
+    /*background: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M13.613%2027.068l-7.94-7.28q-.285-.267-.442-.613t-.172-.7.11-.71.394-.638q.52-.583%201.3-.614T8.225%2017l6.13%205.626%208.79-17q.363-.693%201.104-.93t1.433.118.93%201.103-.126%201.442L16.56%2026.55q-.204.394-.558.654t-.78.34q-.063.015-.118.023t-.11.008-.102%200q-.74%200-1.276-.504z%22%20fill%3D%22%232EBD59%22%20/%3E%3C/svg%3E) left 3px no-repeat;*/
+    background-size: 17px;
+}
+
+
+.list-perks li {
+    margin: 15px 0;
+    padding-left: 40px;
+    color: #919496;
+}

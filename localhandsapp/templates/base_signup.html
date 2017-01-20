@@ -11,9 +11,35 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
-  <body>
-    {% block heading %}{% endblock %}
-    {% block content %}{% endblock %}
+  <body class="bg-grey page-signup reboot">
+
+    <div class="wrap">
+    	<div class="sign-up">
+
+        <div class="l-signup-header">
+    			<div class="container">
+    				<div class="l-box-content">
+    					<a class="spotify-logo" href="#"></a>
+    				</div>
+    			</div>
+    		</div>
+
+    		<div class="l-signup-body">
+    			<div class="container">
+    				<div class="l-box-content">
+    					<section class="signup-select">
+    						<h3 class="text-center text-uppercase">{% block heading %}{% endblock %}</h3>
+                <br>
+                {% block content %}{% endblock %}
+    					</section>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
   </body>
 </html>
