@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from localhandsapp import views
 from django.contrib.auth import views as auth_views
-
 from django.conf.urls.static import static
 from django.conf import settings
+
+from localhandsapp import views, apis
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -47,4 +47,11 @@ urlpatterns = [
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
     # /convert-token (sign_in/ sign up)
     # /revoke-token (sign_out)
+
+    # APIS for Customers
+    url(r'^api/customer/scoopers/$', apis.customer_get_scoopers),
+    url(r'^api/customer/tasks/(?P<scooper_id>\d+)/$', apis.customer_get_tasks),
+    url(r'^api/customer/order/add/$', apis.customer_add_order),
+    url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
