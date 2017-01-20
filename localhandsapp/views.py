@@ -5,7 +5,7 @@ from localhandsapp.forms import UserForm, ScooperForm, UserFormForEdit, TaskForm
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.models import User
-from localhandsapp.models import Task
+from localhandsapp.models import Task, Order
 
 # Create your views here.
 def home(request):
@@ -74,7 +74,15 @@ def scooper_edit_task(request, task_id):
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_order(request):
-    return render(request, 'scooper/order.html', {})
+    if request.method == "POST":
+        order = Order.objects.get(id = request.POST["id"], scooper = request.user.scooper)
+
+        if order.status == Order.PENDING:
+            order.status = Order.PROCESSING
+            order.save()
+
+    orders = Order.objects.filter(scooper=request.user.scooper).order_by("-id")
+    return render(request, 'scooper/order.html', {"orders": orders})
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_report(request):
