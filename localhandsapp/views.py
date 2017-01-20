@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from localhandsapp.forms import UserForm, ScooperForm
+
+from localhandsapp.forms import UserForm, ScooperForm, UserFormForEdit
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
@@ -11,11 +12,26 @@ def home(request):
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_home(request):
-    return render(request, 'scooper/home.html', {})
+    # return render(request, 'scooper/home.html', {})
+    return redirect(scooper_order)
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_account(request):
-    return render(request, 'scooper/account.html', {})
+    user_form = UserFormForEdit(instance = request.user)
+    scooper_form = ScooperForm(instance = request.user.scooper)
+
+    if request.method == "POST":
+        user_form = UserFormForEdit(request.POST, instance = request.user)
+        scooper_form = ScooperForm(request.POST, request.FILES, instance = request.user.scooper)
+
+        if user_form.is_valid() and scooper_form.is_valid():
+            user_form.save()
+            scooper_form.save()
+
+    return render(request, 'scooper/account.html', {
+        "user_form": user_form,
+        "scooper_form": scooper_form
+    })
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_task(request):

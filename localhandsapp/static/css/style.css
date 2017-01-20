@@ -6,6 +6,12 @@ body {
     color: #2E2F33;
 }
 
+.scooper-body {
+  padding-top: 50px;
+  background-color: #EDF2F5;
+  overflow: auto;
+}
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block;
 }
@@ -57,6 +63,14 @@ fieldset {
 
 .bg-grey {
   background-color: #F8F8F8;
+}
+
+.bg-black {
+  background-color: #161621;
+}
+
+.text-white {
+  color: white;
 }
 
 .btn-green {
@@ -175,9 +189,10 @@ a.spotify-logo {
 }
 
 .reboot label {
-    color: #88898c;
+    color: #727375;
     display: block;
     font-size: .9375em;
+    margin-bottom: 0;
 }
 
 .reboot input[type="email"], .reboot input[type="number"], .reboot input[type="password"], .reboot input[type="tel"], .reboot input[type="text"], .reboot textarea {
@@ -190,8 +205,8 @@ a.spotify-logo {
 }
 
 .reboot input:not([type="radio"]), .reboot textarea {
-    background-color: #FFF;
-    border: 1px solid #dfe0e6;
+    /*background-color: #FFF;
+    border: 1px solid #dfe0e6;*/
     color: #1c1c1f;
     font-size: .9375em;
     line-height: normal;
@@ -277,24 +292,33 @@ a.spotify-logo {
     font-size: 14px;
     line-height: 1.5;
     border-radius: 500px;
-    padding: 7px 35px;
+    /*padding: 7px 35px;*/
 }
+
+.btn-login {
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 500px;
+    /*padding: 7px 35px;*/
+    padding: 11px 37px 9px;
+}
+
 
 .sign-up .btn {
     margin-bottom: 14px;
 }
 
 .btn, .navbar .navbar-nav .navbar-btn {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.5;
     border-radius: 500px;
-    padding: 11px 47px 9px;
+    /*padding: 11px 37px 9px;*/
     -webkit-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
     -o-transition: background-color .15s ease,border-color .15s ease,color .15s ease;
     transition: background-color .15s ease,border-color .15s ease,color .15s ease;
     border-width: 0;
     letter-spacing: 1.2px;
-    min-width: 130px;
+    /*min-width: 130px;*/
     text-transform: uppercase;
     white-space: normal;
 }
@@ -437,4 +461,95 @@ a.spotify-logo {
     margin: 15px 0;
     padding-left: 40px;
     color: #919496;
+}
+
+/* SIDEBAR */
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0;
+  background-color: #161621;
+  overflow: auto;
+}
+
+/* SIDE BAR - HEADER */
+.sidebar > div:first-child {
+  padding: 30px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #0C0C11;
+}
+
+.sidebar > div:first-child > h4 {
+  color: #e0deeb;
+}
+
+.sidebar > div:first-child > h5 {
+  color: #b6b4c1;
+}
+
+/* SIDE BAR - LIST */
+.sidebar .list-group {
+  padding: 0;
+  /*background-color: #161621;*/
+}
+
+.sidebar .list-group > span {
+  color: #b6b4c1;
+  display: block;
+  margin-top: 20px;
+  padding: 20px 30px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.sidebar .list-group .list-group-item,
+.sidebar .list-group .list-group-item:focus {
+  background-color: #161621;
+  color: #b6b4c1;
+  border: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.sidebar .list-group .list-group-item.active,
+.sidebar .list-group .list-group-item:hover {
+  background-color: #0C0C11;
+  color: #e0deeb;
+}
+
+.sidebar .list-group .list-group-item:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.sidebar .list-group .list-group-item .badge,
+.sidebar .list-group .list-group-item.active .badge {
+  background-color: #EE5462;
+  color: #e0deeb;
+}
+
+.pb-sidebar {
+  padding-bottom: 6px !important;
+  color: #e0deeb !important;
+}
+
+/* SIDE BAR - LOGOUT */
+.sidebar > div:last-child {
+  padding: 30px;
+}
+
+.sidebar > div:last-child .btn {
+  width: 100%;
+}
+
+/* CONTENT */
+.sidebar-content {
+  padding: 0 40px;
+}
+
+.content .panel {
+  border: none;
 }

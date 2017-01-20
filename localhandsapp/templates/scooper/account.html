@@ -1,5 +1,24 @@
 {% extends 'scooper/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %} Account {% endblock %}
 
 {% block page %}
-  <h2>Scooper Account</h2>
+  <div class="col-lg-offset-2 col-lg-8">
+    <div class="panel">
+      <div class="panel-heading bg-black text-white">
+        <h4 class="panel-title text-center">
+          Account
+        </h4>
+      </div>
+      <div class="panel-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form user_form %}
+            {% bootstrap_form scooper_form %}
+            <button type="submit" class="btn btn-green btn-login btn-block">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

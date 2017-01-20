@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %} Scoop {% endblock %}
+
 
 {% block sidebar %}
-  Scooper, Hi {{ request.user }}
-  <hr/>
+  <div class="text-center">
+    <img src="{{ MEDIA_URL }}{{ request.user.scooper.logo }}" class="img-circle" width="70" height="70" />
+    <br/>
+    <br/>
+    <h4>Hi, {{ request.user.first_name }}</h4>
+    <h5>{{ request.user.email }}</h5>
+  </div>
 
-  <a href="{% url 'scooper-account' %}">Account</a> |
-  <a href="{% url 'scooper-task' %}">Task</a> |
-  <a href="{% url 'scooper-order' %}">Order</a> |
-  <a href="{% url 'scooper-report' %}">Report</a> 
+  <div class="list-group">
+    <span class="text-uppercase pb-sidebar">Dashboard</span>
+    <a href="{% url 'scooper-order' %}" class="list-group-item">Orders</a>
+    <a href="{% url 'scooper-task' %}" class="list-group-item">Tasks</a>
+    <a href="{% url 'scooper-report' %}" class="list-group-item">Reports</a>
+
+    <span class="text-uppercase pb-sidebar">Profile</span>
+    <a href="{% url 'scooper-account' %}" class="list-group-item">Account</a>
+  </div>
+
+  <div class="text-center">
+    <a href="{% url 'scooper-sign-out' %}?next={{ request.path }}" class="btn btn-block btn-sm btn-green">Logout</a>
+  </div>
+
 {% endblock %}
