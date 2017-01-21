@@ -10,6 +10,11 @@ from oauth2_provider.models import AccessToken
 from localhandsapp.models import Scooper, Task, Order, OrderDetails, Driver
 from localhandsapp.serializers import ScooperSerializer, TaskSerializer, OrderSerializer
 
+import stripe
+from localhands.settings import STRIPE_API_KEY
+
+stripe.api_key = STRIPE_API_KEY
+
 
 ##############
 # CUSTOMERS
@@ -57,6 +62,9 @@ def customer_add_order(request):
         # Get profile
         customer = access_token.user.customer
 
+        # Get STRIPE Token
+        stripe_token = request.POST["stripe_token"]
+
         # Check whether customer has any order that is not delivered
         if Order.objects.filter(customer = customer).exclude(status = Order.DELIVERED):
             return JsonResponse({"status": "failed", "error": "Your last order must be completed."})
@@ -73,26 +81,37 @@ def customer_add_order(request):
             order_total += Task.objects.get(id = task["task_id"]).price * task["quantity"]
 
         if len(order_details) > 0:
-            # Step 1 - Create an Order
-            order = Order.objects.create(
-                customer = customer,
-                scooper_id = request.POST["scooper_id"],
-                total = order_total,
-                status = Order.PENDING,
-                address = request.POST["address"]
+
+            # Create a stripe charge: this will charge customers card
+            charge = stripe.Charge.create(
+                amount = order_total * 100, # Amount in cents
+                currency = "usd",
+                source = stripe_token,
+                description = "LocalMotive Order"
             )
 
-            # Step 2 - Create Order details
-            for task in order_details:
-                OrderDetails.objects.create(
-                    order = order,
-                    task_id = task["task_id"],
-                    quantity = task["quantity"],
-                    sub_total = Task.objects.get(id = task["task_id"]).price * task["quantity"]
+            if charge.status != "failed":
+                # Step 2 - Create an Order
+                order = Order.objects.create(
+                    customer = customer,
+                    scooper_id = request.POST["scooper_id"],
+                    total = order_total,
+                    status = Order.PENDING,
+                    address = request.POST["address"]
                 )
 
-            return JsonResponse({"status": "success"})
-            
+                # Step 3 - Create Order details
+                for task in order_details:
+                    OrderDetails.objects.create(
+                        order = order,
+                        task_id = task["task_id"],
+                        quantity = task["quantity"],
+                        sub_total = Task.objects.get(id = task["task_id"]).price * task["quantity"]
+                    )
+                return JsonResponse({"status": "success"})
+            else:
+                return JsonResponse({"status": "failed", "error": "Failed to connect to Stripe."})
+
 def customer_get_latest_order(request):
     access_token = AccessToken.objects.get(token = request.GET.get("access_token"),
         expires__gt = timezone.now())

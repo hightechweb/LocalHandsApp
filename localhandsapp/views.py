@@ -5,7 +5,9 @@ from localhandsapp.forms import UserForm, ScooperForm, UserFormForEdit, TaskForm
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.models import User
-from localhandsapp.models import Task, Order
+from localhandsapp.models import Task, Order, Driver
+
+from django.db.models import Sum, Count, Case, When
 
 # Create your views here.
 def home(request):
@@ -86,7 +88,58 @@ def scooper_order(request):
 
 @login_required(login_url='/scooper/sign-in/')
 def scooper_report(request):
-    return render(request, 'scooper/report.html', {})
+    # Calculate revenue and number of order by current week
+    from datetime import datetime, timedelta
+
+    revenue = []
+    orders = []
+
+    # Calculate weekdays
+    today = datetime.now()
+    current_weekdays = [today + timedelta(days = i) for i in range(0 - today.weekday(), 7 - today.weekday())]
+
+    for day in current_weekdays:
+        delivered_orders = Order.objects.filter(
+            scooper = request.user.scooper,
+            status = Order.DELIVERED,
+            created_at__year = day.year,
+            created_at__month = day.month,
+            created_at__day = day.day
+        )
+        revenue.append(sum(order.total for order in delivered_orders))
+        orders.append(delivered_orders.count())
+
+
+    # Top 3 Tasks
+    top3_tasks = Task.objects.filter(scooper = request.user.scooper)\
+                     .annotate(total_order = Sum('orderdetails__quantity'))\
+                     .order_by("-total_order")[:3]
+
+    task = {
+        "labels": [task.name for task in top3_tasks],
+        "data": [task.total_order or 0 for task in top3_tasks]
+    }
+
+    # Top 3 Drivers
+    top3_drivers = Driver.objects.annotate(
+        total_order = Count(
+            Case (
+                When(order__scooper = request.user.scooper, then = 1)
+            )
+        )
+    ).order_by("-total_order")[:3]
+
+    driver = {
+        "labels": [driver.user.get_full_name() for driver in top3_drivers],
+        "data": [driver.total_order for driver in top3_drivers]
+    }
+
+    return render(request, 'scooper/report.html', {
+        "revenue": revenue,
+        "orders": orders,
+        "task": task,
+        "driver": driver
+    })
 
 def scooper_sign_up(request):
     user_form = UserForm()

@@ -95,7 +95,7 @@ fieldset {
     padding: 1.5em 0;
 }
 
-.layout-signup, .spotify-logo {
+.layout-signup, .app-logo {
     width: 197px;
     height: 59px;
 }
@@ -105,7 +105,7 @@ fieldset {
     max-width: 26.875em;
 }
 
-a.spotify-logo {
+a.app-logo {
     width: 197px;
     height: 59px;
     background: url("../img/scooper-logo.png") no-repeat;
