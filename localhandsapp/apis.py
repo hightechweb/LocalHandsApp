@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from oauth2_provider.models import AccessToken
 
-from localhandsapp.models import Scooper, Task, Order, OrderDetails
+from localhandsapp.models import Scooper, Task, Order, OrderDetails, Driver
 from localhandsapp.serializers import ScooperSerializer, TaskSerializer, OrderSerializer
 
 
@@ -92,15 +92,7 @@ def customer_add_order(request):
                 )
 
             return JsonResponse({"status": "success"})
-
-
-# def customer_get_latest_order(request):
-#     return JsonResponse({})
-
-
-##############
-# RESTAURANT
-##############
+            
 def customer_get_latest_order(request):
     access_token = AccessToken.objects.get(token = request.GET.get("access_token"),
         expires__gt = timezone.now())
@@ -110,13 +102,26 @@ def customer_get_latest_order(request):
 
     return JsonResponse({"order": order})
 
-
+##############
+# SCOOPER
+##############
 def scooper_order_notification(request, last_request_time):
     notification = Order.objects.filter(scooper = request.user.scooper,
         created_at__gt = last_request_time).count()
 
     # THE ABOVE IS LIKE THIS SQL QUERY: select count(*) from Orders where scooper = request.user.scooper AND created_at > last_request_time
     return JsonResponse({"notification": notification})
+
+def customer_driver_location(request):
+    access_token = AccessToken.objects.get(token = request.GET.get("access_token"), expires__gt = timezone.now())
+
+    customer = access_token.user.customer
+
+    # Get the driver's location related to the customers current order
+    current_order = Order.objects.filter(customer=customer,status=Order.ONTHEWAY).last()
+    location = current_order.driver.location
+
+    return JsonResponse({"location": location})
 
 
 ##############
@@ -216,3 +221,17 @@ def driver_get_revenue(request):
         revenue[day.strftime("%a")] = sum(order.total for order in orders)
 
     return JsonResponse({"revenue": revenue})
+
+# POST: params: access_token, "lat,lng"
+@csrf_exempt
+def driver_update_location(request):
+    if request.method == "POST":
+        access_token = AccessToken.objects.get(token = request.POST.get("access_token"), expires__gt = timezone.now())
+
+        driver = access_token.user.driver
+
+        # SET locations string => database
+        driver.location = request.POST["location"]
+        driver.save()
+
+        return JsonResponse({"status": "success"})
