@@ -48,10 +48,20 @@ urlpatterns = [
     # /convert-token (sign_in/ sign up)
     # /revoke-token (sign_out)
 
+    # APIS for order notification
+    url(r'^api/scooper/order/notification/(?P<last_request_time>.+)/$', apis.scooper_order_notification),
+
     # APIS for Customers
     url(r'^api/customer/scoopers/$', apis.customer_get_scoopers),
     url(r'^api/customer/tasks/(?P<scooper_id>\d+)/$', apis.customer_get_tasks),
     url(r'^api/customer/order/add/$', apis.customer_add_order),
     url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+
+    # APIs for DRIVERS
+    url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
+    url(r'^api/driver/order/pick/$', apis.driver_pick_order),
+    url(r'^api/driver/order/latest/$', apis.driver_get_latest_order),
+    url(r'^api/driver/order/complete/$', apis.driver_complete_order),
+    url(r'^api/driver/revenue/$', apis.driver_get_revenue),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

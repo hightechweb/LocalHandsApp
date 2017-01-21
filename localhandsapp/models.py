@@ -13,7 +13,7 @@ class Scooper(models.Model):
     # Required to render object to views...
     def __str__(self):
         # full_name = self.user.first_name + ' ' + self.user.last_name
-        return self.name
+        return self.user.get_full_name()
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
@@ -49,7 +49,7 @@ class Order(models.Model):
     DELIVERED  = 4
 
     STATUS_CHOICES = {
-        (PENDING, "Waiting"),
+        (PENDING, "Pending"),
         (PROCESSING, "Started"),
         (ONTHEWAY, "On the way"),
         (DELIVERED, "Delivered"),
@@ -57,7 +57,7 @@ class Order(models.Model):
 
     customer = models.ForeignKey(Customer)
     scooper = models.ForeignKey(Scooper)
-    driver = models.ForeignKey(Driver)
+    driver = models.ForeignKey(Driver, blank=True, null=True)
     address = models.CharField(max_length=500)
     total = models.IntegerField()
     status = models.IntegerField(choices=STATUS_CHOICES)
