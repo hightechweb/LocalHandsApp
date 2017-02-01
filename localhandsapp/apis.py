@@ -87,7 +87,7 @@ def customer_add_order(request):
                 amount = order_total * 100, # Amount in cents
                 currency = "usd",
                 source = stripe_token,
-                description = "LocalMotive Order"
+                description = "LocalHands Order"
             )
 
             if charge.status != "failed":
