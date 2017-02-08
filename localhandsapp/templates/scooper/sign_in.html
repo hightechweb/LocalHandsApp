@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block title %}Sign In{% endblock %}
-{% block heading %}Scooper Sign In{% endblock %}
+{% block heading %}Handler Sign In{% endblock %}
 
 {% block content %}
   <form method="POST">
@@ -10,5 +10,5 @@
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-green btn-login btn-block">Sign In</button>
   </form>
-  <a href="{% url 'scooper-sign-up' %}" class="link-switch">Become a Scooper</a>
+  <a href="{% url 'scooper-sign-up' %}" class="link-switch">Become a Handler</a>
 {% endblock %}

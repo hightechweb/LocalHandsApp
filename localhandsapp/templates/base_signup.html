@@ -1,44 +1,53 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>{% block title %}{% endblock %}</title>
 
-  </head>
-  <body class="bg-grey page-signup reboot">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
 
-    <div class="wrap">
-    	<div class="sign-up">
+<body class="bg-offblack page-signup reboot">
+	<div class="wrap">
+		<div class="sign-up">
 
-        <div class="l-signup-header">
-    			<div class="container">
-    				<div class="l-box-content">
-    					<a class="app-logo" href="/"></a>
-    				</div>
-    			</div>
-    		</div>
+			<div class="l-signup-header">
+				<div class="container">
+					<div class="l-box-content">
+						<a class="app-logo" href="/"></a>
+					</div>
+				</div>
+			</div>
 
-    		<div class="l-signup-body">
-    			<div class="container">
-    				<div class="l-box-content">
-    					<section class="signup-select">
-    						<h3 class="text-center text-uppercase">{% block heading %}{% endblock %}</h3>
-                <br>
-                {% block content %}{% endblock %}
-    					</section>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
+			<div class="l-signup-body">
+				<div class="container">
+					<div class="l-box-content">
+						<section class="signup-select">
+							<h3 class="text-center text-uppercase">{% block heading %}{% endblock %}</h3>
+							<br> {% block content %}{% endblock %}
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  </body>
+
+	<div class="container">
+		<div class="mastfoot">
+			<div class="inner">
+				<p>Copyright 2017 © <a href="http://localhands.com">LocalHands </a> &nbsp; | &nbsp; All rights reserved.</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+
 </html>

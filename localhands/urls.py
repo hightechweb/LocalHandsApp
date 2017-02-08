@@ -58,6 +58,10 @@ urlpatterns = [
     url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
     url(r'^api/customer/driver/location/$', apis.customer_driver_location),
 
+    # new test - get list of all active tasks (needs)
+    url(r'^api/customer/needs/$', apis.customer_get_needs),
+
+
     # APIs for DRIVERS
     url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
     url(r'^api/driver/order/pick/$', apis.driver_pick_order),

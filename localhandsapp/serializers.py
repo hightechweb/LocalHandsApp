@@ -27,6 +27,12 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ("id", "name", "short_description", "price")
 
+# NEW DT - test to get all active tasks
+# class NeedSerializer(serializers.ModelSerializer):
+#
+#     class Meta:
+#         model = Task
+#         fields = ("id", "name", "short_description", "price")
 
 # ORDER SERIALIZER
 class OrderCustomerSerializer(serializers.ModelSerializer):

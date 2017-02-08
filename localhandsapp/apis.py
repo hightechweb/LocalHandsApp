@@ -36,6 +36,16 @@ def customer_get_tasks(request, scooper_id):
 
     return JsonResponse({"tasks": tasks})
 
+
+def customer_get_needs(request):
+    needs = TaskSerializer(
+        Task.objects.all().order_by("-id"),
+        many = True,
+        context = {"request": request}
+    ).data
+
+    return JsonResponse({"needs": needs})
+
 #def customer_add_order(request):
     #return JsonResponse({})
 
